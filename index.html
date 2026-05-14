@@ -3,1074 +3,203 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MMVG Health Care</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <title>MMVG Health RCM Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --teal: #0a7c6e;
-      --teal-light: #12a08f;
-      --teal-pale: #e6f5f3;
-      --navy: #0d2b3e;
-      --white: #ffffff;
-      --gray: #f4f7f6;
-      --text: #2c3e35;
-      --muted: #6b7f78;
-      --accent: #e8f4f1;
-    }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f3f4f6; color: #1e293b; }
 
-    html { scroll-behavior: smooth; }
+    .main { max-width: 1300px; margin: 1.5rem auto; padding: 0 1.5rem; }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text);
-      background: var(--white);
-      overflow-x: hidden;
-    }
-
-    /* ── TOP BAR ── */
-    .topbar {
-      background: var(--navy);
-      color: #aac4d0;
-      font-size: 0.82rem;
-      padding: 0.5rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .topbar a { color: #aac4d0; text-decoration: none; margin-left: 1.5rem; }
-    .topbar a:hover { color: #fff; }
-    .topbar-left { display: flex; gap: 1.5rem; }
-
-    /* ── NAVBAR ── */
-    nav {
-      background: var(--white);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.07);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-    }
-
-    .logo-icon {
-      width: 44px;
-      height: 44px;
-      background: var(--teal);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.3rem;
-    }
-
-    .logo-text { line-height: 1.2; }
-    .logo-text strong {
-      display: block;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      color: var(--navy);
-    }
-    .logo-text span { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 0.25rem;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 0.5rem 0.9rem;
-      border-radius: 6px;
-      transition: all 0.2s;
-    }
-
-    .nav-links a:hover { background: var(--teal-pale); color: var(--teal); }
-
-    .nav-cta {
-      background: var(--teal) !important;
-      color: white !important;
-      border-radius: 8px !important;
-      padding: 0.6rem 1.2rem !important;
-    }
-
-    .nav-cta:hover { background: var(--teal-light) !important; }
-
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span { width: 24px; height: 2.5px; background: var(--navy); border-radius: 2px; }
-
-    /* ── HERO ── */
     .hero {
-      background: linear-gradient(110deg, var(--navy) 55%, var(--teal) 100%);
-      padding: 5rem 2rem 4rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
+      background: white; border-radius: 12px; overflow: hidden;
+      margin-bottom: 1.5rem; display: grid;
+      grid-template-columns: 1fr 340px; min-height: 210px;
     }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #7dd8cc;
-      font-size: 0.8rem;
-      padding: 0.35rem 0.9rem;
-      border-radius: 30px;
-      margin-bottom: 1.5rem;
-      letter-spacing: 0.04em;
+    .hero-content {
+      background: linear-gradient(135deg, #0d2b5e 0%, #1e40af 100%);
+      padding: 2.5rem 3rem; display: flex; flex-direction: column; justify-content: center;
     }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      color: white;
-      line-height: 1.25;
-      margin-bottom: 1.25rem;
-    }
-
-    .hero h1 em { color: #7dd8cc; font-style: normal; }
-
-    .hero p {
-      color: #aac4d0;
-      font-size: 1.05rem;
-      line-height: 1.7;
-      margin-bottom: 2rem;
-      max-width: 480px;
-    }
-
-    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.8rem 1.8rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.25s;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-white { background: white; color: var(--teal); }
-    .btn-white:hover { background: #e6f5f3; transform: translateY(-2px); }
-
-    .btn-outline-white {
-      background: transparent;
-      color: white;
-      border: 1.5px solid rgba(255,255,255,0.4);
-    }
-
-    .btn-outline-white:hover { border-color: white; background: rgba(255,255,255,0.08); }
-
-    .btn-teal { background: var(--teal); color: white; }
-    .btn-teal:hover { background: var(--teal-light); transform: translateY(-2px); }
-
-    .hero-image {
-      position: relative;
-      display: flex;
-      justify-content: center;
-    }
-
-    .hero-card {
-      background: white;
-      border-radius: 20px;
-      padding: 2rem;
-      width: 100%;
-      max-width: 380px;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-    }
-
-    .hero-card-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1.25rem;
-      border-bottom: 1px solid #eee;
-    }
-
-    .doctor-avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--teal), var(--navy));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-    }
-
-    .doctor-info strong { display: block; color: var(--navy); font-size: 0.95rem; }
-    .doctor-info span { color: var(--muted); font-size: 0.82rem; }
-
-    .stat-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .stat-box {
-      background: var(--gray);
-      border-radius: 10px;
-      padding: 1rem;
-      text-align: center;
-    }
-
-    .stat-box strong {
-      display: block;
-      font-size: 1.4rem;
-      color: var(--teal);
-      font-weight: 700;
-    }
-
-    .stat-box span { font-size: 0.78rem; color: var(--muted); }
-
-    .appointment-btn {
-      width: 100%;
-      background: var(--teal);
-      color: white;
-      border: none;
-      padding: 0.85rem;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      font-family: inherit;
-      transition: background 0.2s;
-    }
-
-    .appointment-btn:hover { background: var(--teal-light); }
-
-    /* ── FULL-WIDTH HERO WRAP ── */
-    .hero-section {
-      background: linear-gradient(110deg, var(--navy) 55%, var(--teal) 100%);
-    }
-
-    /* ── SERVICES BAR ── */
-    .services-bar {
-      background: var(--teal);
-      padding: 1.5rem 2rem;
-    }
-
-    .services-bar-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      gap: 1rem;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-
-    .service-pill {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: white;
-      font-size: 0.88rem;
-      font-weight: 500;
-    }
-
-    .service-pill span { font-size: 1.1rem; }
-
-    /* ── SECTION COMMON ── */
-    .section { padding: 5rem 2rem; }
-    .section-inner { max-width: 1200px; margin: 0 auto; }
-
-    .section-tag {
-      display: inline-block;
-      background: var(--teal-pale);
-      color: var(--teal);
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.35rem 0.9rem;
-      border-radius: 30px;
-      margin-bottom: 0.75rem;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.7rem, 3vw, 2.4rem);
-      color: var(--navy);
-      line-height: 1.3;
-      margin-bottom: 0.75rem;
-    }
-
-    .section-sub { color: var(--muted); font-size: 1rem; max-width: 560px; line-height: 1.7; }
-
-    /* ── SERVICES ── */
-    .services { background: var(--gray); }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-
-    .service-card {
-      background: white;
-      border-radius: 16px;
-      padding: 2rem 1.5rem;
-      transition: all 0.3s;
-      border: 1.5px solid transparent;
-    }
-
-    .service-card:hover {
-      border-color: var(--teal);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 35px rgba(10,124,110,0.12);
-    }
-
-    .service-icon {
-      width: 52px;
-      height: 52px;
-      background: var(--teal-pale);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .service-card h3 { color: var(--navy); font-size: 1rem; margin-bottom: 0.5rem; }
-    .service-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.6; }
-
-    /* ── WHY US ── */
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      margin-top: 3rem;
-    }
-
-    .why-image {
-      background: linear-gradient(135deg, var(--teal-pale), var(--accent));
-      border-radius: 20px;
-      height: 420px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 7rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .why-image::before {
-      content: '';
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      background: rgba(10,124,110,0.08);
-      border-radius: 50%;
-      top: -40px;
-      right: -40px;
-    }
-
-    .why-list { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; }
-
-    .why-item {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-
-    .why-check {
-      width: 36px;
-      height: 36px;
-      min-width: 36px;
-      background: var(--teal-pale);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--teal);
-      font-size: 1rem;
-      margin-top: 2px;
-    }
-
-    .why-item h4 { color: var(--navy); font-size: 0.95rem; margin-bottom: 0.2rem; }
-    .why-item p { color: var(--muted); font-size: 0.87rem; line-height: 1.5; }
-
-    /* ── DOCTORS ── */
-    .doctors { background: var(--gray); }
-
-    .doctors-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-
-    .doctor-card {
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .doctor-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.1);
-    }
-
-    .doctor-photo {
-      height: 180px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-    }
-
-    .d1 { background: linear-gradient(135deg, #d4eee9, #a8ddd6); }
-    .d2 { background: linear-gradient(135deg, #d0e4f0, #a0c8e0); }
-    .d3 { background: linear-gradient(135deg, #dde4d4, #bdd0a8); }
-    .d4 { background: linear-gradient(135deg, #e8d8e8, #d0aad0); }
-
-    .doctor-info-card { padding: 1.25rem; }
-    .doctor-info-card h3 { color: var(--navy); font-size: 0.95rem; font-weight: 600; }
-    .doctor-info-card .specialty { color: var(--teal); font-size: 0.82rem; font-weight: 500; margin: 0.2rem 0 0.6rem; }
-    .doctor-info-card .rating { color: var(--muted); font-size: 0.8rem; }
-
-    /* ── STATS ── */
-    .stats-section {
-      background: var(--navy);
-      padding: 4rem 2rem;
-    }
-
-    .stats-grid {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      text-align: center;
-    }
-
-    .stat-item strong {
-      display: block;
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: #7dd8cc;
-      line-height: 1;
-      margin-bottom: 0.4rem;
-    }
-
-    .stat-item span { color: #aac4d0; font-size: 0.88rem; }
-
-    /* ── TESTIMONIALS ── */
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-
-    .testimonial-card {
-      background: var(--gray);
-      border-radius: 16px;
-      padding: 1.75rem;
-      border-left: 4px solid var(--teal);
-    }
-
-    .testimonial-card p {
-      color: var(--text);
-      font-size: 0.92rem;
-      line-height: 1.7;
-      margin-bottom: 1.25rem;
-      font-style: italic;
-    }
-
-    .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
-
-    .author-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--teal);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 700;
-      font-size: 0.85rem;
-    }
-
-    .author-info strong { display: block; font-size: 0.88rem; color: var(--navy); }
-    .author-info span { font-size: 0.78rem; color: var(--muted); }
-    .stars { color: #f5a623; font-size: 0.85rem; margin-top: 0.2rem; }
-
-    /* ── APPOINTMENT ── */
-    .appointment-section {
-      background: linear-gradient(135deg, var(--teal), var(--navy));
-      padding: 5rem 2rem;
-      text-align: center;
-    }
-
-    .appointment-section h2 {
-      font-family: 'Playfair Display', serif;
-      color: white;
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      margin-bottom: 1rem;
-    }
-
-    .appointment-section p { color: #aac4d0; margin-bottom: 2rem; font-size: 1rem; }
-
-    .appt-form {
-      display: flex;
-      gap: 1rem;
-      max-width: 700px;
-      margin: 0 auto;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .appt-form input, .appt-form select {
-      flex: 1;
-      min-width: 180px;
-      padding: 0.8rem 1.1rem;
-      border-radius: 8px;
-      border: none;
-      font-size: 0.9rem;
-      font-family: inherit;
-      background: rgba(255,255,255,0.95);
-      color: var(--text);
-    }
-
-    .appt-form input:focus, .appt-form select:focus { outline: 2px solid #7dd8cc; }
-
-    /* ── CONTACT INFO ── */
-    .contact-bar {
-      background: var(--navy);
-      padding: 2rem;
-    }
-
-    .contact-bar-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      color: #aac4d0;
-    }
-
-    .contact-item-icon {
-      width: 40px;
-      height: 40px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-    }
-
-    .contact-item strong { display: block; color: white; font-size: 0.88rem; }
-    .contact-item span { font-size: 0.8rem; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #060f16;
-      color: #6b8a99;
-      padding: 3rem 2rem 1.5rem;
-    }
-
-    .footer-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .footer-brand p { font-size: 0.88rem; line-height: 1.7; margin-top: 0.75rem; max-width: 260px; }
-
-    footer h4 { color: white; font-size: 0.9rem; margin-bottom: 1rem; }
-
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .footer-links a { color: #6b8a99; text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
-    .footer-links a:hover { color: #7dd8cc; }
-
-    .footer-bottom {
-      max-width: 1200px;
-      margin: 0 auto;
-      border-top: 1px solid #1a2e3d;
-      padding-top: 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.82rem;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; text-align: center; }
-      .hero p { margin: 0 auto 2rem; }
-      .hero-btns { justify-content: center; }
-      .hero-image { display: none; }
-      .why-grid { grid-template-columns: 1fr; }
-      .why-image { height: 220px; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 600px) {
-      .topbar { justify-content: center; text-align: center; }
-      .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: white; padding: 1.5rem 2rem; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-      .nav-links.open { display: flex; }
-      .hamburger { display: flex; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid { grid-template-columns: 1fr; }
-    }
+    .hero-content h1 { color: white; font-size: 1.7rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.3; }
+    .hero-content p { color: #bfdbfe; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem; max-width: 420px; }
+    .hero-btns { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .hero-btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.55rem 1rem; border-radius: 6px; text-decoration: none; font-size: 0.82rem; font-weight: 600; transition: all 0.2s; }
+    .hero-btn-solid { background: white; color: #0d2b5e; }
+    .hero-btn-solid:hover { background: #eff6ff; }
+    .hero-btn-outline { background: rgba(255,255,255,0.15); color: white; border: 1.5px solid rgba(255,255,255,0.35); }
+    .hero-btn-outline:hover { background: rgba(255,255,255,0.25); }
+    .hero-image { background: linear-gradient(135deg, #dbeafe, #eff6ff); display: flex; align-items: center; justify-content: center; }
+    .hero-image-content { text-align: center; padding: 1.5rem; }
+    .hero-image-content .emoji { font-size: 3rem; display: block; margin-bottom: 1rem; }
+    .hero-badge { background: rgba(255,255,255,0.9); border-radius: 8px; padding: 0.75rem 1rem; }
+    .hero-badge strong { display: block; color: #0d2b5e; font-size: 0.85rem; }
+    .hero-badge span { color: #64748b; font-size: 0.75rem; }
+
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+
+    .card { background: white; border-radius: 10px; padding: 1.25rem; border: 1px solid #e2e8f0; }
+    .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+    .card-title { font-size: 0.95rem; font-weight: 700; color: #0d2b5e; }
+    .see-all { color: #3b82f6; font-size: 0.78rem; text-decoration: none; font-weight: 500; }
+    .see-all:hover { text-decoration: underline; }
+
+    .quick-links-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+    .quick-link-item { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; text-decoration: none; padding: 0.75rem 0.4rem; border-radius: 8px; transition: background 0.2s; }
+    .quick-link-item:hover { background: #f0f7ff; }
+    .quick-link-icon { width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+    .ql-blue{background:#dbeafe;} .ql-green{background:#dcfce7;} .ql-purple{background:#ede9fe;}
+    .ql-teal{background:#ccfbf1;} .ql-orange{background:#ffedd5;} .ql-red{background:#fee2e2;}
+    .ql-yellow{background:#fef9c3;} .ql-pink{background:#fce7f3;}
+    .quick-link-item span { font-size: 0.74rem; color: #334155; font-weight: 500; text-align: center; line-height: 1.3; }
+
+    .announcement-item { display: flex; gap: 0.7rem; padding: 0.65rem 0; border-bottom: 1px solid #f1f5f9; }
+    .announcement-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .ann-icon { width: 34px; height: 34px; min-width: 34px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; }
+    .ann-content strong { display: block; font-size: 0.82rem; color: #1e293b; font-weight: 600; margin-bottom: 0.2rem; }
+    .ann-content p { font-size: 0.76rem; color: #64748b; line-height: 1.4; }
+
+    .doc-item { display: flex; align-items: center; justify-content: space-between; padding: 0.55rem 0; border-bottom: 1px solid #f1f5f9; text-decoration: none; }
+    .doc-item:last-child { border-bottom: none; }
+    .doc-left { display: flex; align-items: center; gap: 0.55rem; }
+    .doc-name { font-size: 0.81rem; color: #1e293b; font-weight: 500; }
+    .doc-item:hover .doc-name { color: #3b82f6; }
+    .doc-date { font-size: 0.73rem; color: #94a3b8; white-space: nowrap; margin-left: 0.5rem; }
+
+    .training-item { display: flex; align-items: center; gap: 0.65rem; padding: 0.6rem 0; border-bottom: 1px solid #f1f5f9; text-decoration: none; }
+    .training-item:last-child { border-bottom: none; }
+    .training-name { font-size: 0.81rem; color: #1e293b; font-weight: 500; }
+    .training-item:hover .training-name { color: #3b82f6; }
+
+    .contact-item { display: flex; align-items: center; gap: 0.7rem; padding: 0.6rem 0; border-bottom: 1px solid #f1f5f9; }
+    .contact-item:last-child { border-bottom: none; }
+    .contact-avatar { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.75rem; color: white; min-width: 34px; }
+    .ca-blue{background:#3b82f6;} .ca-green{background:#10b981;} .ca-purple{background:#8b5cf6;} .ca-orange{background:#f59e0b;}
+    .contact-info strong { display: block; font-size: 0.81rem; color: #1e293b; font-weight: 600; }
+    .contact-info span { font-size: 0.73rem; color: #64748b; }
+    .contact-email { font-size: 0.72rem; color: #3b82f6; margin-left: auto; text-decoration: none; white-space: nowrap; }
+    .contact-email:hover { text-decoration: underline; }
+
+    .helpful-link { display: flex; align-items: center; gap: 0.55rem; padding: 0.58rem 0; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: #1e293b; font-size: 0.81rem; font-weight: 500; }
+    .helpful-link:last-child { border-bottom: none; }
+    .helpful-link:hover { color: #3b82f6; }
+
+    @media (max-width: 1024px) { .grid-3 { grid-template-columns: 1fr 1fr; } .hero { grid-template-columns: 1fr; } .hero-image { display: none; } }
+    @media (max-width: 640px) { .grid-3 { grid-template-columns: 1fr; } .main { padding: 0 0.75rem; margin: 1rem auto; } }
   </style>
 </head>
 <body>
+  <div class="main">
 
-  <!-- TOP BAR -->
-  <div class="topbar">
-    <div class="topbar-left">
-      <span>📞 Emergency: 1-800-MMVG-911</span>
-      <span>🕐 Mon–Sat: 8:00 AM – 6:00 PM</span>
-    </div>
-    <div>
-      <a href="#">Patient Portal</a>
-      <a href="#">Pay Bill</a>
-      <a href="#">Careers</a>
-    </div>
-  </div>
-
-  <!-- NAVBAR -->
-  <nav>
-    <a href="#" class="logo">
-      <div class="logo-icon">⚕️</div>
-      <div class="logo-text">
-        <strong>MMVG Health Care</strong>
-        <span>Compassionate Care · Advanced Medicine</span>
-      </div>
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#doctors">Our Doctors</a></li>
-      <li><a href="#about">About Us</a></li>
-      <li><a href="#testimonials">Reviews</a></li>
-      <li><a href="#appointment" class="nav-cta">Book Appointment</a></li>
-    </ul>
-    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
-      <span></span><span></span><span></span>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <div class="hero-section">
+    <!-- HERO -->
     <div class="hero">
       <div class="hero-content">
-        <div class="hero-badge">⭐ Trusted by 50,000+ Patients</div>
-        <h1>Your Health Is Our <em>Greatest Priority</em></h1>
-        <p>MMVG Health Care provides world-class medical services with compassionate, patient-centered care. From routine checkups to advanced treatments — we're here for you.</p>
+        <h1>Welcome to MMVG Health<br>RCM Portal</h1>
+        <p>Your one-stop destination for operational resources, policies, training materials, and department information.</p>
         <div class="hero-btns">
-          <a href="#appointment" class="btn btn-white">📅 Book Appointment</a>
-          <a href="#services" class="btn btn-outline-white">Our Services →</a>
+          <a href="https://mmvghealth.sharepoint.com/SitePages/Cred.aspx" target="_blank" class="hero-btn hero-btn-solid">🪪 Credentialing Resources</a>
+          <a href="https://mmvghealth.sharepoint.com/SitePages/Biling.aspx" target="_blank" class="hero-btn hero-btn-outline">📄 Billing Documents</a>
+          <a href="https://mmvghealth.sharepoint.com/SitePages/Policies.aspx" target="_blank" class="hero-btn hero-btn-outline">🛡️ Employee Policies</a>
+          <a href="https://mmvghealth.sharepoint.com/SitePages/Training.aspx" target="_blank" class="hero-btn hero-btn-outline">🎓 Training Materials</a>
         </div>
       </div>
       <div class="hero-image">
-        <div class="hero-card">
-          <div class="hero-card-header">
-            <div class="doctor-avatar">👨‍⚕️</div>
-            <div class="doctor-info">
-              <strong>Dr. Reddy, MD</strong>
-              <span>Chief Medical Officer</span>
-            </div>
+        <div class="hero-image-content">
+          <span class="emoji">💊🩺📋</span>
+          <div class="hero-badge">
+            <strong>MMVG Health LLC</strong>
+            <span>Revenue Cycle Management</span>
           </div>
-          <div class="stat-row">
-            <div class="stat-box">
-              <strong>15+</strong>
-              <span>Years Experience</span>
-            </div>
-            <div class="stat-box">
-              <strong>98%</strong>
-              <span>Patient Satisfaction</span>
-            </div>
-          </div>
-          <div class="stat-row">
-            <div class="stat-box">
-              <strong>50K+</strong>
-              <span>Patients Treated</span>
-            </div>
-            <div class="stat-box">
-              <strong>24/7</strong>
-              <span>Emergency Care</span>
-            </div>
-          </div>
-          <button class="appointment-btn">📅 Schedule a Visit</button>
         </div>
       </div>
     </div>
+
+    <!-- ROW 1 -->
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-header"><span class="card-title">Quick Links</span></div>
+        <div class="quick-links-grid">
+          <a href="https://mmvghealth.sharepoint.com/SitePages/Cred.aspx" target="_blank" class="quick-link-item"><div class="quick-link-icon ql-blue">🪪</div><span>Credentialing</span></a>
+          <a href="https://mmvghealth.sharepoint.com/SitePages/Biling.aspx" target="_blank" class="quick-link-item"><div class="quick-link-icon ql-green">💵</div><span>Billing</span></a>
+          <a href="#" class="quick-link-item"><div class="quick-link-icon ql-purple">📋</div><span>Claims</span></a>
+          <a href="https://mmvghealth.sharepoint.com/SitePages/Policies.aspx" target="_blank" class="quick-link-item"><div class="quick-link-icon ql-teal">🛡️</div><span>Policies</span></a>
+          <a href="https://mmvghealth.sharepoint.com/SitePages/Training.aspx" target="_blank" class="quick-link-item"><div class="quick-link-icon ql-orange">🎓</div><span>Training</span></a>
+          <a href="https://mmvghealth.sharepoint.com/SitePages/HR.aspx" target="_blank" class="quick-link-item"><div class="quick-link-icon ql-red">📝</div><span>HR Forms</span></a>
+          <a href="#" class="quick-link-item"><div class="quick-link-icon ql-yellow">📊</div><span>Projects</span></a>
+          <a href="https://mmvghealth.sharepoint.com/SitePages/Contract-page.aspx" target="_blank" class="quick-link-item"><div class="quick-link-icon ql-pink">📒</div><span>Contact Directory</span></a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="card-title">Announcements</span><a href="#" class="see-all">See all</a></div>
+        <div class="announcement-item">
+          <div class="ann-icon" style="background:#dbeafe;">📅</div>
+          <div class="ann-content"><strong>Holiday Schedule – Memorial Day</strong><p>Our office will be closed on Monday, May 27, 2026.</p></div>
+        </div>
+        <div class="announcement-item">
+          <div class="ann-icon" style="background:#dcfce7;">📄</div>
+          <div class="ann-content"><strong>New Payer Enrollment Updates</strong><p>Please review the latest payer enrollment guidelines.</p></div>
+        </div>
+        <div class="announcement-item">
+          <div class="ann-icon" style="background:#ede9fe;">🛡️</div>
+          <div class="ann-content"><strong>HIPAA Reminder</strong><p>Please ensure all patient information is handled securely.</p></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="card-title">Recent Documents</span><a href="#" class="see-all">See all</a></div>
+        <a href="#" class="doc-item"><div class="doc-left"><span>📘</span><span class="doc-name">New Employee Onboarding Checklist</span></div><span class="doc-date">May 16</span></a>
+        <a href="#" class="doc-item"><div class="doc-left"><span>📕</span><span class="doc-name">HIPAA Privacy Policy</span></div><span class="doc-date">May 15</span></a>
+        <a href="#" class="doc-item"><div class="doc-left"><span>📘</span><span class="doc-name">Credentialing Process SOP</span></div><span class="doc-date">May 15</span></a>
+        <a href="#" class="doc-item"><div class="doc-left"><span>📘</span><span class="doc-name">Attendance Policy</span></div><span class="doc-date">May 14</span></a>
+        <a href="#" class="doc-item"><div class="doc-left"><span>📕</span><span class="doc-name">W-9 Form</span></div><span class="doc-date">May 10</span></a>
+      </div>
+    </div>
+
+    <!-- ROW 2 -->
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-header"><span class="card-title">Training Resources</span><a href="https://mmvghealth.sharepoint.com/SitePages/Training.aspx" target="_blank" class="see-all">See all</a></div>
+        <a href="https://mmvghealth.sharepoint.com/SitePages/Training.aspx" target="_blank" class="training-item"><span>📁</span><span class="training-name">New Employee Training</span></a>
+        <a href="https://mmvghealth.sharepoint.com/SitePages/Training.aspx" target="_blank" class="training-item"><span>📁</span><span class="training-name">Credentialing SOPs</span></a>
+        <a href="https://mmvghealth.sharepoint.com/SitePages/Training.aspx" target="_blank" class="training-item"><span>📁</span><span class="training-name">Billing Process Training</span></a>
+        <a href="https://mmvghealth.sharepoint.com/SitePages/Training.aspx" target="_blank" class="training-item"><span>📁</span><span class="training-name">Compliance & HIPAA Training</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="card-title">Department Contacts</span><a href="https://mmvghealth.sharepoint.com/SitePages/Contract-page.aspx" target="_blank" class="see-all">See all</a></div>
+        <div class="contact-item">
+          <div class="contact-avatar ca-blue">AS</div>
+          <div class="contact-info"><strong>Amit Sharma</strong><span>Operations Manager</span></div>
+          <a href="mailto:amit.sharma@mmvghealth.com" class="contact-email">amit.sharma@mmvghealth.com</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-avatar ca-green">PR</div>
+          <div class="contact-info"><strong>Priya Reddy</strong><span>Credentialing Lead</span></div>
+          <a href="mailto:priya.reddy@mmvghealth.com" class="contact-email">priya.reddy@mmvghealth.com</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-avatar ca-purple">NK</div>
+          <div class="contact-info"><strong>Neha Kapoor</strong><span>HR Manager</span></div>
+          <a href="mailto:neha.kapoor@mmvghealth.com" class="contact-email">neha.kapoor@mmvghealth.com</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-avatar ca-orange">RD</div>
+          <div class="contact-info"><strong>Ravi Dumpa</strong><span>Billing Specialist</span></div>
+          <a href="mailto:ravi.dumpa@mmvghealth.com" class="contact-email">ravi.dumpa@mmvghealth.com</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="card-title">Helpful Links</span></div>
+        <a href="#" target="_blank" class="helpful-link">🌐 Insurance Payer List</a>
+        <a href="#" target="_blank" class="helpful-link">🌐 ICD-10 Reference</a>
+        <a href="#" target="_blank" class="helpful-link">🌐 CMS Guidelines</a>
+        <a href="#" target="_blank" class="helpful-link">🌐 Telephone Directory</a>
+        <a href="#" target="_blank" class="helpful-link">🌐 Employee Handbook</a>
+        <a href="#" target="_blank" class="helpful-link">🌐 IT Help Desk</a>
+      </div>
+    </div>
+
   </div>
-
-  <!-- SERVICES BAR -->
-  <div class="services-bar">
-    <div class="services-bar-inner">
-      <div class="service-pill"><span>🏥</span> Primary Care</div>
-      <div class="service-pill"><span>🫀</span> Cardiology</div>
-      <div class="service-pill"><span>🧠</span> Neurology</div>
-      <div class="service-pill"><span>🦷</span> Dental Care</div>
-      <div class="service-pill"><span>👁️</span> Ophthalmology</div>
-      <div class="service-pill"><span>🤱</span> Pediatrics</div>
-      <div class="service-pill"><span>🩻</span> Radiology</div>
-    </div>
-  </div>
-
-  <!-- SERVICES -->
-  <section class="section services" id="services">
-    <div class="section-inner">
-      <div class="section-tag">Our Services</div>
-      <h2 class="section-title">Comprehensive Medical Care<br>Under One Roof</h2>
-      <p class="section-sub">We offer a full range of medical services using the latest technology and evidence-based practices.</p>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">🫀</div>
-          <h3>Cardiology</h3>
-          <p>Advanced heart care including ECG, echocardiography, stress testing, and cardiac rehabilitation.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🧠</div>
-          <h3>Neurology</h3>
-          <p>Expert diagnosis and treatment for neurological conditions including stroke, epilepsy, and migraines.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🤱</div>
-          <h3>Pediatrics</h3>
-          <p>Gentle, specialized care for infants, children, and adolescents by board-certified pediatricians.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🦴</div>
-          <h3>Orthopedics</h3>
-          <p>Treatment for bone, joint, and muscle conditions including sports injuries and joint replacement.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🔬</div>
-          <h3>Laboratory</h3>
-          <p>On-site diagnostic lab with fast turnaround for blood tests, biopsies, and pathology services.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🩻</div>
-          <h3>Radiology</h3>
-          <p>State-of-the-art imaging including MRI, CT scan, X-ray, and ultrasound with same-day results.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">💊</div>
-          <h3>Pharmacy</h3>
-          <p>In-house pharmacy with a full range of medications and personalized counseling from pharmacists.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🧬</div>
-          <h3>Oncology</h3>
-          <p>Comprehensive cancer screening, diagnosis, and treatment with a multidisciplinary care team.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY US -->
-  <section class="section" id="about">
-    <div class="section-inner">
-      <div class="why-grid">
-        <div class="why-image">🏥</div>
-        <div>
-          <div class="section-tag">Why Choose Us</div>
-          <h2 class="section-title">Medicine Driven by Compassion</h2>
-          <p class="section-sub" style="margin-bottom:2rem;">At MMVG Health Care, we combine clinical excellence with genuine care for every patient.</p>
-          <ul class="why-list">
-            <li class="why-item">
-              <div class="why-check">✓</div>
-              <div>
-                <h4>Board-Certified Specialists</h4>
-                <p>Our team of 80+ physicians are highly trained specialists in their respective fields.</p>
-              </div>
-            </li>
-            <li class="why-item">
-              <div class="why-check">✓</div>
-              <div>
-                <h4>Advanced Technology</h4>
-                <p>Latest medical equipment and digital health records for accurate, efficient care.</p>
-              </div>
-            </li>
-            <li class="why-item">
-              <div class="why-check">✓</div>
-              <div>
-                <h4>Patient-First Approach</h4>
-                <p>Every care plan is personalized — we treat people, not just conditions.</p>
-              </div>
-            </li>
-            <li class="why-item">
-              <div class="why-check">✓</div>
-              <div>
-                <h4>Insurance Accepted</h4>
-                <p>We accept most major insurance plans and offer flexible payment options.</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <div class="stats-section">
-    <div class="stats-grid">
-      <div class="stat-item">
-        <strong>50K+</strong>
-        <span>Patients Treated</span>
-      </div>
-      <div class="stat-item">
-        <strong>80+</strong>
-        <span>Specialist Doctors</span>
-      </div>
-      <div class="stat-item">
-        <strong>15+</strong>
-        <span>Years of Service</span>
-      </div>
-      <div class="stat-item">
-        <strong>98%</strong>
-        <span>Satisfaction Rate</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- DOCTORS -->
-  <section class="section doctors" id="doctors">
-    <div class="section-inner">
-      <div class="section-tag">Our Team</div>
-      <h2 class="section-title">Meet Our Expert Doctors</h2>
-      <p class="section-sub">Experienced, caring, and dedicated to your health and well-being.</p>
-      <div class="doctors-grid">
-        <div class="doctor-card">
-          <div class="doctor-photo d1">👨‍⚕️</div>
-          <div class="doctor-info-card">
-            <h3>Dr. Anil Reddy</h3>
-            <div class="specialty">Cardiologist</div>
-            <div class="rating">⭐⭐⭐⭐⭐ <span style="color:var(--muted)">5.0 (210 reviews)</span></div>
-          </div>
-        </div>
-        <div class="doctor-card">
-          <div class="doctor-photo d2">👩‍⚕️</div>
-          <div class="doctor-info-card">
-            <h3>Dr. Priya Sharma</h3>
-            <div class="specialty">Neurologist</div>
-            <div class="rating">⭐⭐⭐⭐⭐ <span style="color:var(--muted)">4.9 (185 reviews)</span></div>
-          </div>
-        </div>
-        <div class="doctor-card">
-          <div class="doctor-photo d3">👨‍⚕️</div>
-          <div class="doctor-info-card">
-            <h3>Dr. Marcus Lee</h3>
-            <div class="specialty">Pediatrician</div>
-            <div class="rating">⭐⭐⭐⭐⭐ <span style="color:var(--muted)">4.9 (320 reviews)</span></div>
-          </div>
-        </div>
-        <div class="doctor-card">
-          <div class="doctor-photo d4">👩‍⚕️</div>
-          <div class="doctor-info-card">
-            <h3>Dr. Fatima Khan</h3>
-            <div class="specialty">Orthopedic Surgeon</div>
-            <div class="rating">⭐⭐⭐⭐⭐ <span style="color:var(--muted)">5.0 (140 reviews)</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section class="section" id="testimonials">
-    <div class="section-inner">
-      <div class="section-tag">Patient Reviews</div>
-      <h2 class="section-title">What Our Patients Say</h2>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <p>"The staff at MMVG were incredibly kind and professional. Dr. Reddy took the time to explain everything clearly. Best healthcare experience I've ever had."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">JM</div>
-            <div class="author-info">
-              <strong>James Mitchell</strong>
-              <span>Cardiac Patient</span>
-              <div class="stars">★★★★★</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p>"My daughter was treated by Dr. Lee and he was absolutely wonderful with her. The pediatric ward is warm, friendly, and puts kids at ease immediately."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">SR</div>
-            <div class="author-info">
-              <strong>Sarah Robbins</strong>
-              <span>Parent of Patient</span>
-              <div class="stars">★★★★★</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p>"Scheduling was easy, wait times were short, and the facility is spotless. MMVG Health Care is truly a world-class medical center."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">TP</div>
-            <div class="author-info">
-              <strong>Thomas Park</strong>
-              <span>General Patient</span>
-              <div class="stars">★★★★★</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- APPOINTMENT -->
-  <section class="appointment-section" id="appointment">
-    <div class="section-tag" style="background:rgba(255,255,255,0.15); color:white;">Book an Appointment</div>
-    <h2>Ready to See a Doctor?</h2>
-    <p>Fill in your details below and our team will confirm your appointment within 2 hours.</p>
-    <div class="appt-form">
-      <input type="text" placeholder="Your Full Name"/>
-      <input type="tel" placeholder="Phone Number"/>
-      <select>
-        <option value="">Select Department</option>
-        <option>Cardiology</option>
-        <option>Neurology</option>
-        <option>Pediatrics</option>
-        <option>Orthopedics</option>
-        <option>General Medicine</option>
-      </select>
-      <input type="date"/>
-      <button class="btn btn-white" style="white-space:nowrap">Book Now →</button>
-    </div>
-  </section>
-
-  <!-- CONTACT BAR -->
-  <div class="contact-bar">
-    <div class="contact-bar-inner">
-      <div class="contact-item">
-        <div class="contact-item-icon">📍</div>
-        <div>
-          <strong>Our Location</strong>
-          <span>123 Medical Drive, Health City, TX 75001</span>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">📞</div>
-        <div>
-          <strong>Call Us</strong>
-          <span>1-800-MMVG-CARE</span>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">✉️</div>
-        <div>
-          <strong>Email Us</strong>
-          <span>info@mmvghealthcare.com</span>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">🕐</div>
-        <div>
-          <strong>Working Hours</strong>
-          <span>Mon–Sat: 8:00 AM – 6:00 PM</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <strong style="color:white; font-family:'Playfair Display',serif; font-size:1.2rem;">⚕️ MMVG Health Care</strong>
-        <p>Providing compassionate, world-class medical care to our community for over 15 years. Your health is our mission.</p>
-      </div>
-      <div>
-        <h4>Quick Links</h4>
-        <ul class="footer-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#doctors">Our Doctors</a></li>
-          <li><a href="#appointment">Appointments</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Services</h4>
-        <ul class="footer-links">
-          <li><a href="#">Cardiology</a></li>
-          <li><a href="#">Neurology</a></li>
-          <li><a href="#">Pediatrics</a></li>
-          <li><a href="#">Radiology</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Patient Info</h4>
-        <ul class="footer-links">
-          <li><a href="#">Patient Portal</a></li>
-          <li><a href="#">Insurance Info</a></li>
-          <li><a href="#">Pay Bill Online</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2025 MMVG Health Care. All rights reserved.</span>
-      <span>Designed with ❤️ for better health</span>
-    </div>
-  </footer>
-
-  <script>
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', e => {
-        const href = link.getAttribute('href');
-        if (href === '#') return;
-        e.preventDefault();
-        document.getElementById('navLinks').classList.remove('open');
-        const target = document.querySelector(href);
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-  </script>
 </body>
 </html>
